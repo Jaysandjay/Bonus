@@ -1,3 +1,7 @@
+body{
+    color: white;
+}
+
 .nav {
     background-color: rgba(78, 72, 72, 0.8);
 }
@@ -6,4 +10,29 @@
 .content{
     color: white;
     margin: 20px;
+}
+
+.img-med{
+    width: 286px;
+    height: 286px;
+}
+
+.classics{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.card{
+    opacity: 0.85;
+}
+
+.card:hover{
+    opacity: 1;
+}
+
+.menu-title{
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 251, 243);
 }
