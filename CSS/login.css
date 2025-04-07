@@ -1,0 +1,19 @@
+
+
+#login-message{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    font-size: 30px;
+    background-color: grey;
+    width: 500px;
+    height: 200px;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+    visibility: hidden;
+}
+
