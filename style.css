@@ -1,5 +1,12 @@
 body{
+    background-image: url(images/Pizza-3007395.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100%;
+    width: 100%;
     color: white;
+
 }
 
 .nav {
@@ -67,4 +74,9 @@ form{
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
+}
+
+.card-body a{
+    position:absolute;
+    bottom: 10px;
 }
