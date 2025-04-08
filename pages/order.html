@@ -6,6 +6,8 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css"/>
+    <link rel="stylesheet" href="../CSS/order.css"/>
+    <script defer src="../src/order.js"></script>
 </head>
   <body>
     <nav>
@@ -26,13 +28,47 @@
     </nav>
     <h1>Your order</h1>
 
-    <div class="no-order">
+    <div id="no-order">
         <p>Looks like you have not added to your order yet!</p>
-        <p>Checkout the menu to add items!</p>
     </div>
 
     <div class="order-content">
-
+      <form>
+        <div class="pizza-form">
+          <img class="img-sm" src="../images/cheese.jpg"/>
+          <div class="pizza-input">
+            <h2>Cheese Pizza</h2>
+            <label for="cheeseQuantity">Quantity</label>
+            <input id="cheese" name="cheeseQuantity" type="number">  
+          </div>
+        </div>
+        <div class="pizza-form">
+          <img class="img-sm" src="../images/pepperoni.jpg"/>
+          <div class="pizza-input">
+            <h2>Pepperoni Pizza</h2>
+            <label for="pepperoniQuantity">Quantity</label>
+            <input id="pepperoni" name="pepperoniQuantity" type="number">  
+          </div>
+        </div>
+        <div class="pizza-form">
+          <img class="img-sm" src="../images/meat-lovers.png"/>
+          <div class="pizza-input">
+            <h2>MeatLovers Pizza</h2>
+            <label for="meatloversQuantity">Quantity</label>
+            <input id="meatlovers" name="meatloversQuantity" type="number">  
+          </div>
+        </div>
+        <div class="pizza-form">
+          <img class="img-sm" src="../images/veggie.jpg"/>
+          <div class="pizza-input">
+            <h2>Vegetarian Pizza</h2>
+            <label for="veggieQuantity">Quantity</label>
+            <input id="veggie" name="veggieQuantity" type="number">  
+          </div>
+        </div>
+        
+      </form>
+      <button id="add" class="btn btn-primary">Add</button>
     </div>
 
 
