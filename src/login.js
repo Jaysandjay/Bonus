@@ -1,5 +1,6 @@
 const form = document.getElementById("form")
-const submit = document.getElementById("submit")
+const formDiv = document.getElementById("formDiv")
+const signIn = document.getElementById("signIn")
 const userName = document.getElementById("name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
@@ -23,15 +24,20 @@ function validateEmail(email){
       );
   };
 
+function getName(){
+    let user = JSON.parse(localStorage.getItem("currentUser"))
+    return user.name
+}
+
 function checkLoggin(){
     if(localStorage.getItem("loggedIn") === "false"){
         loggedInMessage.style.visibility = "hidden"
-        form.style.visibility = "visible"
+        formDiv.style.visibility = "visible"
     }else{
-        let userName = JSON.parse(localStorage.getItem("user")).name
-        spanName.textContent = userName
+        let userName = (localStorage.getItem("currentUser"))
+        spanName.textContent = getName()
         loggedInMessage.style.visibility = "visible"
-        form.style.visibility = "hidden"
+        formDiv.style.visibility = "hidden"
     }
 }
 
@@ -41,31 +47,100 @@ checkLoggin()
 
 logOut.addEventListener("click", function(){
     localStorage.setItem("loggedIn", false)
+    localStorage.setItem("currentUser", null)
     checkLoggin()
 })
 
-
-submit.addEventListener("click", function(event){
-    event.preventDefault()
+function validate(){
     if(
         validateLength(userName.value) &&
         validateLength(email.value) &&
         validateLength(password.value)
     ){
         if(validateEmail(email.value)){
-            console.log("yasy")
-            localStorage.setItem("loggedIn", true)
-            let newUser = {
-                "name": userName.value,
-                "order-history": {}
-            }
-            localStorage.setItem("user", JSON.stringify(newUser))
-            checkLoggin()
+            console.log("yay")
+            return true
         }else{
             alert("please insert valid email")
+            return false
         }
     }else{
         alert("Please fill in all feilds")
+        return false
+    }
+}
+
+function clearInputs(){
+    userName.value = ""
+    email.value = ""
+    password.value = ""
+}
+
+
+
+
+// SIGN IN
+function searchUser(info){
+    let users = getUsers()
+    console.log("info",info)
+    console.log("users",users)
+    result = users.filter(user => 
+        user.name == info.name &&
+        user.email == info.email &&
+        user.password == info.password
+    )
+    console.log("result", result)
+    console.log(!result == "undefined")
+    if(result[0]){
+        localStorage.setItem("loggedIn", true)
+        localStorage.setItem("currentUser", JSON.stringify(result[0]))
+        clearInputs()
+        checkLoggin()
+        return result
+    }else{
+        alert("User not found, please try again")
+    }
+}
+
+
+signIn.addEventListener("click", function(event){
+    event.preventDefault()
+    if(validate()){
+        info = {
+            name: userName.value,
+            email: email.value,
+            password: password.value,
+            history: {}
+        }
+        searchUser(info)
     }
 })
+
+
+function getUsers(){
+    if(!localStorage.getItem("users")){
+        return []
+    }else{
+        return JSON.parse(localStorage.getItem("users"))
+    }
+}
+// console.log("users", JSON.parse(localStorage.getItem("users") ))
+
+
+// CREATE NEW
+// submit.addEventListener("click", function(event){
+//     event.preventDefault()
+//     if(validate()){
+//         let users = getUsers()
+//         newUser = {
+//             name: userName.value,
+//             email: email.value,
+//             password: password.value,
+//             history: {}
+//         }
+//         users.push(newUser)
+//         localStorage.setItem("users", JSON.stringify(users))
+//         checkLoggin()
+//     }
+// })
 

@@ -47,18 +47,8 @@ body{
     color: rgb(255, 251, 243);
 }
 
-form{
-    width: 500px;
-    padding: 15px;
-    border-radius: 15px;
-    background-color: gray;
-}
 
-.form{
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
+
 
 .no-order{
     visibility: hidden;
