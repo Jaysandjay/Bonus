@@ -3,24 +3,6 @@ import {
     html
 } from "https://unpkg.com/gridjs?module";
 
-
-// Check if current order
-const noOrder = document.getElementById("no-order")
-const currentOrderDiv = document.getElementById("current-order")
-
-function isOrder(){
-    if(!localStorage.getItem("currentOrder")){
-        noOrder.style.visibility = "visible"
-        currentOrderDiv.style.visibility = "hidden"
-        console.log("none")
-    }else{
-       noOrder.style.visibility = "hidden"
-       currentOrderDiv.style.visibility = "visible"
-       updateOrderDisplay()
-    }
-}
-isOrder()
-
 // Declare pizza prices
 const PRICES = {
     Cheese: 10,
@@ -41,9 +23,42 @@ const inputArray = [
     veggieQuantity
 ]
 
-
-
 const addBtn = document.getElementById("add")
+
+
+// Check if current order
+const noOrder = document.getElementById("no-order")
+const currentOrderDiv = document.getElementById("current-order")
+
+function isOrder(){
+    if(!localStorage.getItem("currentOrder")){
+        noOrder.style.visibility = "visible"
+        currentOrderDiv.style.visibility = "hidden"
+        console.log("none")
+    }else{
+       noOrder.style.visibility = "hidden"
+       currentOrderDiv.style.visibility = "visible"
+       updateOrderDisplay()
+       setDefaults()
+    }
+}
+isOrder()
+
+
+
+function setDefaults(){
+    let currentOrder = JSON.parse(localStorage.getItem("currentOrder"))
+    console.log(currentOrder)
+    for(const pizza in currentOrder){
+        console.log(pizza)
+        for(const input of inputArray){
+            if(pizza === input.id){
+                input.value = currentOrder[pizza].quantity
+            }
+        }
+    }
+}
+
 
 function validate(){
     if(
@@ -104,7 +119,7 @@ function createGridData(){
     let total = ["", "Total", `$${order.total}.00`]
     delete order.total
     let gridData = []
-    console.log(order)
+  
     for(const pizza in order){
         let column = []
         column.push(pizza)
