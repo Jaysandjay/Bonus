@@ -1,12 +1,22 @@
+import {
+    Grid,
+    html
+} from "https://unpkg.com/gridjs?module";
+
 
 // Check if current order
 const noOrder = document.getElementById("no-order")
+const currentOrderDiv = document.getElementById("current-order")
 
 function isOrder(){
+    console.log(localStorage.getItem("currentOrder"))
+    console.log(!localStorage.getItem("currentOrder"))
     if(!localStorage.getItem("currentOrder")){
         noOrder.style.visibility = "visible"
+        currentOrderDiv.style.visibility = "hidden"
     }else{
-        noOrder.style.visibility = "hidden"
+       noOrder.style.visibility = "hidden"
+       currentOrderDiv.style.visibility = "visible"
     }
 }
 isOrder()
@@ -85,8 +95,19 @@ function storeOrder(){
 }
 
 function updateOrderDisplay(){
-    
+    new Grid({
+        columns: ["Name", "Email", "Phone Number"],
+        data: [
+          ["John", "john@example.com", "(353) 01 222 3333"],
+          ["Mark", "mark@gmail.com", "(01) 22 888 4444"],
+          ["Eoin", "eoin@gmail.com", "0097 22 654 00033"],
+          ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
+          ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
+        ]
+      }).render(document.getElementById("order-details"));
+
 }
+updateOrderDisplay()
 
 addBtn.addEventListener("click", function(){
     if(validate()){

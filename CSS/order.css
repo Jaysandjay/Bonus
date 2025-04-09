@@ -13,6 +13,21 @@
     transform: translate(50%, -50%);
 }
 
+#current-order{
+    visibility: hidden;
+    background-color: grey;
+    width: 500px;
+    height: 200px;
+    font-size: 30px;
+    padding: 15px;
+    position: fixed;
+    border-radius: 15px;
+    text-align: center;
+    top: 20%;
+    right: 20%;
+    transform: translate(50%, -50%);
+}
+
 .img-sm{
     height: 200px;
     width: 200px;
