@@ -9,37 +9,39 @@ const noOrder = document.getElementById("no-order")
 const currentOrderDiv = document.getElementById("current-order")
 
 function isOrder(){
-    console.log(localStorage.getItem("currentOrder"))
-    console.log(!localStorage.getItem("currentOrder"))
     if(!localStorage.getItem("currentOrder")){
         noOrder.style.visibility = "visible"
         currentOrderDiv.style.visibility = "hidden"
+        console.log("none")
     }else{
        noOrder.style.visibility = "hidden"
        currentOrderDiv.style.visibility = "visible"
+       updateOrderDisplay()
     }
 }
 isOrder()
 
 // Declare pizza prices
 const PRICES = {
-    cheese: 10,
-    pepperoni: 15,
-    meatlovers: 20,
-    veggie: 20
+    Cheese: 10,
+    Pepperoni: 15,
+    MeatLovers: 20,
+    Veggie: 20
 }
 
 // get input elements
-const cheeseQuantity = document.getElementById("cheese")
-const pepperoniQuantity = document.getElementById("pepperoni")
-const meatloversQuantity = document.getElementById("meatlovers")
-const veggieQuantity = document.getElementById("veggie")
+const cheeseQuantity = document.getElementById("Cheese")
+const pepperoniQuantity = document.getElementById("Pepperoni")
+const meatloversQuantity = document.getElementById("MeatLovers")
+const veggieQuantity = document.getElementById("Veggie")
 const inputArray = [
     cheeseQuantity,
     pepperoniQuantity,
     meatloversQuantity,
     veggieQuantity
 ]
+
+
 
 const addBtn = document.getElementById("add")
 
@@ -65,6 +67,8 @@ function isEmpty(pizza){
 }
 
 function getPrice(pizza, quantity){
+    console.log(pizza)
+    console.log(PRICES)
     let price = PRICES[pizza]
     let total = price * quantity
     return total
@@ -83,6 +87,7 @@ function storeOrder(){
     let order = {}
     for(const input of inputArray){
         if(!isEmpty(input)){
+            console.log(input)
             let key = input.id
                 order[key] = {
                     quantity: input.value,
@@ -99,6 +104,7 @@ function createGridData(){
     let total = ["", "Total", `$${order.total}.00`]
     delete order.total
     let gridData = []
+    console.log(order)
     for(const pizza in order){
         let column = []
         column.push(pizza)
@@ -110,14 +116,31 @@ function createGridData(){
     return gridData
 }
 
+function clearGrid(){
+    let parent = document.getElementById("parent")
+    let gridDiv = document.getElementById("order-details")
+    if(parent.parentNode){
+        parent.removeChild(gridDiv)
+        let newDiv = document.createElement("div")
+        newDiv.id = "order-details"
+        parent.appendChild(newDiv)
+    }
+}
+
 function updateOrderDisplay(){
+    let parent = document.getElementById("parent")
+    if(parent.parentNode){
+        clearGrid()
+    }
+
     new Grid({
         columns: ["Pizza", "Quantity", "Price"],
         data: createGridData()
       }).render(document.getElementById("order-details"));
 
+
 }
-updateOrderDisplay()
+
 
 addBtn.addEventListener("click", function(){
     if(validate()){
