@@ -24,11 +24,14 @@ form{
     display: flex;
     flex-wrap: wrap;
     max-width: 1000px;
+    border: solid 2px black;
+    
 }
 
 form input{
     width: 50px;
     height: 40px;
+    text-align: center;
 }
 
 .pizza-form{
@@ -41,13 +44,28 @@ form input{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.pizza-info{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+
+
 #add{
+    display: block;
     width: 100px;
     height: 50px;
-    margin: 50px;
+    margin: 0 auto;
 }
 
 .order-content{
     width: fit-content;
+    height: 650px;
+    border: solid 2px black;
 }
 
+label{
+    padding-right: 25px;
+}
