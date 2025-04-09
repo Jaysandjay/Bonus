@@ -37,6 +37,10 @@ body{
     min-height: 500px;
 }
 
+button{
+    font-size: 25px !important;
+}
+
 .card:hover{
     opacity: 1;
 }
