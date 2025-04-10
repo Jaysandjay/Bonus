@@ -6,7 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="CSS/home.css"
+    <link rel="stylesheet" href="CSS/home.css"/>
 </head>
   <body>
     <nav>
@@ -35,6 +35,7 @@
     </div>
 
     <div id="location"></div>
+    <div id="weather"></div>
 
 
     
@@ -52,7 +53,32 @@
             showCursor: false
           });
 
+
+          // Weather
+          async function fetchWeather(lat, lon){
+          try{
+            const weatherDiv = document.getElementById("weather")
+            const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m&current=temperature_2m&forecast_days=1`
+            // const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=43.64049&longitude=-79.3919728&hourly=temperature_2m&current=temperature_2m&forecast_days=1`
+            // const response = await fetch(weatherURL)
+            // let data = response.json()
+            // console.log(data)
+            // const tempature = data.current
+            // console.log(data)
+            fetch(weatherURL).then((response) => response.json())
+            .then((data) => {
+              console.log("data", data.current.temperature_2m)
+              temp = data.current.temperature_2m
+              weatherDiv.textContent = `It is currently ${temp} Degrees Celcius`
+            })
+          }catch(error){
+            console.log(error)
+          }
+        }
+
           // LOCATION
+          let getWeather = false
+          let currentCity = ""
 
           function displayCity(city){
             const locationDiv = document.getElementById("location")
@@ -63,6 +89,8 @@
             console.log(position)
             const latitude = position.coords.latitude
             const longitude = position.coords.longitude
+            console.log("lat", latitude)
+            console.log("long", longitude)
             const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyAJIGR3UPGn9UQnJRP85oVGpU0e37qmi7A`;
 
 
@@ -75,6 +103,7 @@
                 ).long_name;
                 displayCity(city)
               console.log(`Your city is ${city}.`);
+              fetchWeather(latitude, longitude)
               })
           }
 
@@ -83,6 +112,10 @@
           }
 
           navigator.geolocation.getCurrentPosition(success, error)
+
+
+
+
         </script>
 
   </body>
