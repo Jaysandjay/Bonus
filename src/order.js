@@ -35,6 +35,8 @@ function isOrder(){
     if(localStorage.getItem("currentOrder")){
         noOrder.style.visibility = "hidden"
         currentOrderDiv.style.visibility = "visible"
+        updateOrderDisplay()
+        setDefaults()
         return false
     }else{
        noOrder.style.visibility = "visible"
@@ -166,12 +168,12 @@ function updateLocalUsers(current=(JSON.parse(localStorage.getItem("currentUser"
         user.name != current.name &&
         user.email != current.email 
         ) return true
-        console.log(user.name != current.name)
-        console.log(user.email != current.email)
-        console.log(user.password != current.password)
-        console.log(user.email)
-        console.log(current.email)
-        console.log(user)
+        // console.log(user.name != current.name)
+        // console.log(user.email != current.email)
+        // console.log(user.password != current.password)
+        // console.log(user.email)
+        // console.log(current.email)
+        // console.log(user)
        
     }
     )
