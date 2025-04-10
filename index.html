@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="CSS/home.css"
 </head>
   <body>
     <nav>
@@ -32,14 +33,8 @@
         <h1 class="title">Pizza Palace</h1>
         <span id="typed"></span>
     </div>
-    <!-- <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div> -->
+
+    <div id="location"></div>
 
 
     
@@ -56,6 +51,38 @@
             loop: true,
             showCursor: false
           });
+
+          // LOCATION
+
+          function displayCity(city){
+            const locationDiv = document.getElementById("location")
+            locationDiv.textContent = `Check out our locations in ${city}!`
+          }
+
+          const success = (position) =>{
+            console.log(position)
+            const latitude = position.coords.latitude
+            const longitude = position.coords.longitude
+            const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyAJIGR3UPGn9UQnJRP85oVGpU0e37qmi7A`;
+
+
+            fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data)
+                const city = data.results[0].address_components.find((component) =>
+                  component.types.includes("locality")
+                ).long_name;
+                displayCity(city)
+              console.log(`Your city is ${city}.`);
+              })
+          }
+
+          const error = (error) =>{
+            console.log(error)
+          }
+
+          navigator.geolocation.getCurrentPosition(success, error)
         </script>
 
   </body>
