@@ -1,6 +1,7 @@
 const form = document.getElementById("form")
 const formDiv = document.getElementById("formDiv")
 const signIn = document.getElementById("signIn")
+const signUp = document.getElementById("signUp")
 const userName = document.getElementById("name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
@@ -30,7 +31,7 @@ function getName(){
 }
 
 function checkLoggin(){
-    if(localStorage.getItem("loggedIn") === "false"){
+    if(localStorage.getItem("loggedIn") != "true"){
         loggedInMessage.style.visibility = "hidden"
         formDiv.style.visibility = "visible"
     }else{
@@ -58,7 +59,6 @@ function validate(){
         validateLength(password.value)
     ){
         if(validateEmail(email.value)){
-            console.log("yay")
             return true
         }else{
             alert("please insert valid email")
@@ -99,6 +99,7 @@ function searchUser(info){
         return result
     }else{
         alert("User not found, please try again")
+        return false
     }
 }
 
@@ -127,20 +128,41 @@ function getUsers(){
 // console.log("users", JSON.parse(localStorage.getItem("users") ))
 
 
+function exists(info){
+    let users = getUsers()
+    result = users.filter(user => 
+        user.email == info.email
+    )
+    if(result[0]){
+        console.log("true")
+        return false
+    }else{
+        console.log("false")
+        return true
+    }
+}
+
 // CREATE NEW
-// submit.addEventListener("click", function(event){
-//     event.preventDefault()
-//     if(validate()){
-//         let users = getUsers()
-//         newUser = {
-//             name: userName.value,
-//             email: email.value,
-//             password: password.value,
-//             history: {}
-//         }
-//         users.push(newUser)
-//         localStorage.setItem("users", JSON.stringify(users))
-//         checkLoggin()
-//     }
-// })
+signUp.addEventListener("click", function(event){
+    event.preventDefault()
+    if(validate()){
+        let users = getUsers()
+        newUser = {
+            name: userName.value,
+            email: email.value,
+            password: password.value,
+            history: {}
+        }
+        if(exists(newUser)){
+           users.push(newUser)
+            localStorage.setItem("users", JSON.stringify(users))
+            localStorage.setItem("currentUser", JSON.stringify(newUser))
+            localStorage.setItem("loggedIn", true)
+            checkLoggin() 
+        }else{
+            alert("Looks like you already have an account with that email!")
+        }
+        
+    }
+})
 

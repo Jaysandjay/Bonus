@@ -24,6 +24,7 @@ const inputArray = [
 ]
 
 const addBtn = document.getElementById("add")
+const orderBtn = document.getElementById("order")
 
 
 // Check if current order
@@ -31,15 +32,15 @@ const noOrder = document.getElementById("no-order")
 const currentOrderDiv = document.getElementById("current-order")
 
 function isOrder(){
-    if(!localStorage.getItem("currentOrder")){
-        noOrder.style.visibility = "visible"
-        currentOrderDiv.style.visibility = "hidden"
-        console.log("none")
+    if(localStorage.getItem("currentOrder")){
+        noOrder.style.visibility = "hidden"
+        currentOrderDiv.style.visibility = "visible"
+        return false
     }else{
-       noOrder.style.visibility = "hidden"
-       currentOrderDiv.style.visibility = "visible"
-       updateOrderDisplay()
+       noOrder.style.visibility = "visible"
+       currentOrderDiv.style.visibility = "hidden"
        setDefaults()
+       return true
     }
 }
 isOrder()
@@ -47,16 +48,17 @@ isOrder()
 
 
 function setDefaults(){
-    let currentOrder = JSON.parse(localStorage.getItem("currentOrder"))
-    console.log(currentOrder)
-    for(const pizza in currentOrder){
-        console.log(pizza)
-        for(const input of inputArray){
-            if(pizza === input.id){
-                input.value = currentOrder[pizza].quantity
+    if(localStorage.getItem("currentOrder")){
+        let currentOrder = JSON.parse(localStorage.getItem("currentOrder"))
+        for(const pizza in currentOrder){
+            for(const input of inputArray){
+                if(pizza === input.id){
+                    input.value = currentOrder[pizza].quantity
+                }
             }
         }
     }
+
 }
 
 
@@ -152,14 +154,64 @@ function updateOrderDisplay(){
         columns: ["Pizza", "Quantity", "Price"],
         data: createGridData()
       }).render(document.getElementById("order-details"));
+}
 
 
+function updateLocalUsers(current=(JSON.parse(localStorage.getItem("currentUser")))){
+    const users = JSON.parse(localStorage.getItem("users"))
+    console.log(users)
+    console.log(current.name)
+    const otherUsers =  users.filter(user => {
+        if(
+        user.name != current.name &&
+        user.email != current.email 
+        ) return true
+        console.log(user.name != current.name)
+        console.log(user.email != current.email)
+        console.log(user.password != current.password)
+        console.log(user.email)
+        console.log(current.email)
+        console.log(user)
+       
+    }
+    )
+    otherUsers.push(current)
+    localStorage.setItem("users", JSON.stringify(otherUsers))
+}
+
+console.log(JSON.parse(localStorage.getItem("users")))
+
+function storeToHistory(){
+    if(localStorage.getItem("loggedIn")){
+        const user = JSON.parse(localStorage.getItem("currentUser"))
+        const order = JSON.parse(localStorage.getItem("currentOrder"))
+        const history = user["history"]
+        const date = new Date
+        const today = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}/${date.getMilliseconds()}`
+        history[today] = order
+        localStorage.setItem("currentUser", JSON.stringify(user))
+        updateLocalUsers(user)
+    }
+    
+}
+
+
+function clearCurrentOrder(){
+    localStorage.setItem("currentOrder", "")
 }
 
 
 addBtn.addEventListener("click", function(){
     if(validate()){
         storeOrder()
+        isOrder()
         updateOrderDisplay()
     }
+})
+
+orderBtn.addEventListener("click", function(){
+    storeToHistory()
+    clearCurrentOrder()
+    isOrder()
+    alert("Thank you for ordering! Your order will be ready for pickup in 40 min!")
 })
