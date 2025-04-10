@@ -10,7 +10,10 @@
 }
 
 button{
-    width: fit-content;
+    height: 50px;
+    min-width: 200px !important;
+    margin: 15px;
+    text-align: center;
 }
 
 .orderInfo{
