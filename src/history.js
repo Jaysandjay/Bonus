@@ -7,7 +7,6 @@ const spanName = document.getElementById("user-name")
 const noHistoryDiv = document.getElementById("no-history")
 const noUserDiv = document.getElementById("no-user")
 const loggedInDiv = document.getElementById("logged-in")
-const ordersDiv = document.getElementById("orders")
 const name = ""
 
 function getUser(){
@@ -64,6 +63,8 @@ function clearGrid(){
 
 function createGridData(order){
     let total = ["", "Total", `$${order.total}.00`]
+    let tempHolder = order.total
+    console.log(order.total)
     delete order.total
     let gridData = []
   
@@ -75,6 +76,7 @@ function createGridData(order){
         gridData.push(column)
     }
     gridData.push(total)
+    order["total"] = tempHolder
     return gridData
 }
 
@@ -91,6 +93,7 @@ function checkLoggin(){
         loggedInDiv.style.visibility = "visible"
         if(isHistory()){
             noHistoryDiv.style.visibility = "hidden"
+            renderButtons()
         }else{
             noHistoryDiv.style.visibility = "visible"
         }
@@ -116,7 +119,7 @@ function renderButtons(){
     
 }
 
-renderButtons()
+
 
 
 checkLoggin()

@@ -21,3 +21,8 @@ button{
     justify-content: space-between;
     margin: 50px;
 }
+
+#no-user{
+    font-size: 50px;
+    margin: 10px;
+}

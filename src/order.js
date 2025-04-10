@@ -202,6 +202,14 @@ function clearCurrentOrder(){
     localStorage.setItem("currentOrder", "")
 }
 
+function checkLoggin(){
+    if(localStorage.getItem("loggedIn") != "true"){
+        return false
+    }else{
+        return true
+    }
+}
+
 
 addBtn.addEventListener("click", function(){
     if(validate()){
@@ -212,8 +220,15 @@ addBtn.addEventListener("click", function(){
 })
 
 orderBtn.addEventListener("click", function(){
-    storeToHistory()
-    clearCurrentOrder()
-    isOrder()
-    alert("Thank you for ordering! Your order will be ready for pickup in 40 min!")
+    if(checkLoggin()){
+        storeToHistory()
+        clearCurrentOrder()
+        isOrder()
+        alert("Thank you for ordering! Your order will be ready for pickup in 40 min!")  
+    }else{
+        clearCurrentOrder()
+        isOrder()
+        alert("Thank you for ordering! Your order will be ready for pickup in 40 min!")  
+    }
+
 })
