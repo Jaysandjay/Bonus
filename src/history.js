@@ -37,6 +37,18 @@ function getOrders(){
     return history
 }
 
+function renderOrder(order){
+    let parent = document.getElementById("orders-container")
+    if(parent.parentNode){
+        clearGrid()
+    }
+
+    new Grid({
+        columns: ["Pizza", "Quantity", "Price"],
+        data: createGridData(order)
+      }).render(document.getElementById("orders"));
+}
+
 function clearGrid(){
     let parent = document.getElementById("orders-container")
     let gridDiv = document.getElementById("orders")
@@ -48,48 +60,7 @@ function clearGrid(){
     }
 }
 
-function renderGrid(date, order, elementId){
-    let parent = document.getElementById("orders-container")
-    if(parent.parentNode){
-        clearGrid()
-    }
 
-    // createDiv(elementId)
-    const gridDiv = document.createElement("div")
-    const tempDiv = document.createElement("div")
-    gridDiv.id = elementId
-    ordersDiv.appendChild(gridDiv)
-    console.log(gridDiv)
-
-    console.log(gridDiv)
-    new Grid({
-        columns: ["Pizza", "Quantity", "Price"],
-        data: createGridData(order)
-      }).render(ordersDiv);
-
-      console.log(tempDiv)
-      gridDiv.appendChild(tempDiv)
-      console.log(ordersDiv)
-
-}
-
-
-function createDiv(elementId){
-    const gridDiv = document.createElement("div")
-    gridDiv.id = elementId
-    ordersDiv.appendChild(gridDiv)
-    console.log(gridDiv)
-}
-
-
-function showOrders(){
-    let orders = getOrders()
-    let elementId = 1
-    for(const idDate in orders){
-        renderGrid(idDate, orders[idDate], elementId.toString())
-        elementId += 1
-    }
-}
 
 function createGridData(order){
     let total = ["", "Total", `$${order.total}.00`]
@@ -119,14 +90,33 @@ function checkLoggin(){
         spanName.textContent = getName()
         loggedInDiv.style.visibility = "visible"
         if(isHistory()){
-    
             noHistoryDiv.style.visibility = "hidden"
-            showOrders()
         }else{
             noHistoryDiv.style.visibility = "visible"
         }
         noUserDiv.style.visibility = "hidden"
     }
 }
+
+
+
+function renderButtons(){
+    let buttonContainer = document.getElementById("button-container")
+    let orders = getOrders()
+    for(const order in orders){
+        let button = document.createElement("button")
+        button.classList.add("btn")
+        button.classList.add("btn-primary")
+        button.textContent = order
+        buttonContainer.appendChild(button)
+        button.addEventListener("click", function(){
+            renderOrder(orders[order])}
+        )
+    }
+    
+}
+
+renderButtons()
+
 
 checkLoggin()
