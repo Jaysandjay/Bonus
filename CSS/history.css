@@ -26,3 +26,14 @@ button{
     font-size: 50px;
     margin: 10px;
 }
+
+#logged-in{
+    margin: 20px;
+}
+
+/* Large */
+@media only screen and (min-height: 800px){
+    .orderInfo{
+        margin: 200px;
+    }
+}
