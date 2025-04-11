@@ -1,66 +1,63 @@
-body{
-    background-image: url(images/Pizza-3007395.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    color: white;
-    height: 100%;
-    width: 100%;
-    margin: 0;
+body {
+  background-image: url(images/Pizza-3007395.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
-html{
-    height: 100%;
-    width: 100%;
-    margin: 0;
-
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .nav {
-    background-color: rgba(78, 72, 72, 0.8);
+  background-color: rgba(78, 72, 72, 0.8);
 }
 
-
-.content{
-    color: white;
-    margin: 20px;
+.content {
+  color: white;
+  margin: 20px;
 }
 
-.img-med{
-    margin: 0 auto;
-    width: 286px;
-    height: 286px;
+.img-med {
+  margin: 0 auto;
+  width: 286px;
+  height: 286px;
 }
 
-.classics{
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
+.classics {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
-.card{
-    opacity: 0.85;
-    min-width: 300px;
-    min-height: 500px;
+.card {
+  opacity: 0.85;
+  min-width: 300px;
+  min-height: 500px;
 }
 
-button{
-    font-size: 25px !important;
+button {
+  font-size: 25px !important;
 }
 
-.card:hover{
-    opacity: 1;
+.card:hover {
+  opacity: 1;
 }
 
-.menu-title{
-    display: flex;
-    justify-content: center;
-    color: rgb(255, 251, 243);
+.menu-title {
+  display: flex;
+  justify-content: center;
+  color: rgb(255, 251, 243);
 }
 
-
-.card-body a{
-    position:absolute;
-    bottom: 10px;
+.card-body a {
+  position: absolute;
+  bottom: 10px;
 }

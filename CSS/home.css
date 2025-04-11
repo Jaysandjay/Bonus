@@ -1,15 +1,14 @@
-#location{
-    position: fixed;
-    bottom: 5px;
-    margin: 15px;
-    font-size: 20px;
+#location {
+  position: fixed;
+  bottom: 5px;
+  margin: 15px;
+  font-size: 20px;
 }
 
-#weather{
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    margin: 15px;
-    font-size: 20px;
-
+#weather {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  margin: 15px;
+  font-size: 20px;
 }

@@ -1,39 +1,39 @@
-#orders-container{
-    width: 800px;
+#orders-container {
+  width: 800px;
 }
 
-#button-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 400px;
+#button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
 }
 
-button{
-    height: 50px;
-    min-width: 200px !important;
-    margin: 15px;
-    text-align: center;
+button {
+  height: 50px;
+  min-width: 200px !important;
+  margin: 15px;
+  text-align: center;
 }
 
-.orderInfo{
-    display: flex;
-    justify-content: space-between;
-    margin: 50px;
+.orderInfo {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
 }
 
-#no-user{
-    font-size: 50px;
-    margin: 10px;
+#no-user {
+  font-size: 50px;
+  margin: 10px;
 }
 
-#logged-in{
-    margin: 20px;
+#logged-in {
+  margin: 20px;
 }
 
 /* Large */
-@media only screen and (min-height: 800px){
-    .orderInfo{
-        margin: 200px;
-    }
+@media only screen and (min-height: 800px) {
+  .orderInfo {
+    margin: 200px;
+  }
 }

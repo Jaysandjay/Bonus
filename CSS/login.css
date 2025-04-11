@@ -1,44 +1,42 @@
-
-
-#login-message{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -70%);
-    font-size: 30px;
-    background-color: grey;
-    width: 500px;
-    height: 200px;
-    border-radius: 15px;
-    text-align: center;
-    align-items: center;
-    visibility: hidden;
+#login-message {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  font-size: 30px;
+  background-color: grey;
+  width: 500px;
+  height: 200px;
+  border-radius: 15px;
+  text-align: center;
+  align-items: center;
+  visibility: hidden;
 }
 
-form{
-    width: 500px;
-    padding: 15px;
-    border-radius: 15px;
-    background-color: gray;
+form {
+  width: 500px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: gray;
 }
 
-#formDiv{
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+#formDiv {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.signUpDiv{
-    background-color: gray;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    border-radius: 15px;
-    margin-top: 30px;
-    font-size: 25px;
+.signUpDiv {
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 30px;
+  font-size: 25px;
 }
