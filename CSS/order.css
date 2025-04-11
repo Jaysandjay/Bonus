@@ -21,7 +21,6 @@ main{
 
 .orderDisplay{
     width: 700px;
-    border: solid black
 }
 
 #current-order{
@@ -47,7 +46,6 @@ form{
     flex-wrap: wrap;
     max-width: 1000px;
     min-width: fit-content;
-    border: solid 5px black;
 }
 
 form input{
@@ -70,7 +68,6 @@ form input{
     flex-direction: column;
     height: 100%;
     justify-content: space-around;
-    border: solid 5px black;
 }
 
 #add{
@@ -85,15 +82,11 @@ form input{
     min-width: 500px;
     max-height: 100vh;
     min-height: fit-content;
-    /* overflow-y: auto; */
-    border: solid 5px black;
-
 }
 
 .addBtnContainer{
     width: 120px;
     height: 70px;
-    border: solid 5px black;
 }
 
 label{
