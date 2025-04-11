@@ -1,3 +1,13 @@
+body{
+    min-width: 1560px;
+}
+
+main{
+    display: flex;
+    justify-content: space-around;
+    min-width: 1560px;
+}
+
 #no-order{
     visibility: hidden;
     background-color: grey;
@@ -5,12 +15,13 @@
     height: 200px;
     font-size: 30px;
     padding: 15px;
-    position: fixed;
     border-radius: 15px;
     text-align: center;
-    top: 20%;
-    right: 20%;
-    transform: translate(50%, -50%);
+}
+
+.orderDisplay{
+    width: 700px;
+    border: solid black
 }
 
 #current-order{
@@ -20,12 +31,8 @@
     height: fit-content;
     font-size: 30px;
     padding: 15px;
-    position: fixed;
     border-radius: 15px;
     text-align: center;
-    top: 50%;
-    right: 20%;
-    transform: translate(50%, -50%);
 }
 
 .img-sm{
@@ -39,8 +46,8 @@ form{
     display: flex;
     flex-wrap: wrap;
     max-width: 1000px;
-    border: solid 2px black;
-    
+    min-width: fit-content;
+    border: solid 5px black;
 }
 
 form input{
@@ -56,7 +63,6 @@ form input{
     width: 450px;
     border-radius: 15px;
     background-color: gray; 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .pizza-info{
@@ -64,24 +70,110 @@ form input{
     flex-direction: column;
     height: 100%;
     justify-content: space-around;
+    border: solid 5px black;
 }
 
-
-
 #add{
-    display: block;
     width: 100px;
     height: 50px;
-    margin: 0 auto;
 }
 
 .order-content{
-    width: fit-content;
-    height: 650px;
-    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+    max-height: 100vh;
+    min-height: fit-content;
+    /* overflow-y: auto; */
+    border: solid 5px black;
+
+}
+
+.addBtnContainer{
+    width: 120px;
+    height: 70px;
+    border: solid 5px black;
 }
 
 label{
     padding-right: 25px;
 }
 
+/* LARGE SCREEN */
+@media only screen and (min-height: 800px){
+    body{
+        color: red;
+    }
+    #no-order{
+        visibility: hidden;
+        background-color: grey;
+        margin: 20px;
+        width: 800px;
+        height: 200px;
+        font-size: 30px;
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    form{
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1500px;
+    }
+    
+    
+    .pizza-form{
+        margin: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 500px;
+        border-radius: 15px;
+        background-color: gray; 
+    }
+
+    .pizza-info{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
+    }
+
+
+    #add{
+        display: block;
+        width: 100px;
+        height: 50px;
+        margin: 0 auto;
+    }
+
+    .order-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        width: fit-content;
+        min-height: 650px;
+        overflow-y: auto;
+        min-width: 680px;
+    }
+}
+
+/* SMALL WIDTH */
+@media only screen and (max-width: 1800px){
+    body{
+        color: blue;
+        height: 100%;
+    }
+    #add{
+        /* position: relative;
+        right: 700px;
+        top: 125vh; */
+        position: fixed;
+        top: 90px;
+        left: 600px;
+    }
+}
